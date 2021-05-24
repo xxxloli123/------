@@ -86,10 +86,18 @@ events.on("key", function (code, event) {
     files.removeDir("/sdcard/2333/1uiCollection/ACTION_DOWN_key")
     // 记录当前按键标识
     files.createWithDirs("/sdcard/2333/1uiCollection/ACTION_DOWN_key" + keyCodeStr);
+    
     // 长按指定组合按键切换屏幕点击方式 
     if (keyCodeStr == kc_d_switch) {
         kc_d_s_boolean = true
     }
+    // 监听ok键 切换成方向键选择控件
+    if (keyCodeStr == kc_ok) {
+        if (kc_d_s_boolean) {
+            directionSwitch = !directionSwitch
+        }
+    }
+
     if (directionSwitch) {
 
     } else {
@@ -109,8 +117,6 @@ events.on("key", function (code, event) {
                         break;
                     //左
                     case "":
-                        toast()
-                        directionSwitch = !directionSwitch ? true : false
                         break;
                     //右
                     case "":
